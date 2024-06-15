@@ -1,6 +1,6 @@
 tensorflow==2.16.1
 keras==3.3.3
-opencv-python-headless
+opencv-python
 numpy==1.26.4
 streamlit==1.35.0
 streamlit-webrtc==0.47.7
