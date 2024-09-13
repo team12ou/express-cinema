@@ -1,3 +1,6 @@
+## Model Training Code: Emotion Recognition with FER 2013 Dataset in Python
+[Python Notebook](https://colab.research.google.com/drive/1MJyXEnjbaI9JRcX1l7RuyagjAR4r_Ixu#scrollTo=p4VC0JApnq88)
+
 ## Installation and Usage
 Install all the required dependencies using :
 ```python3
