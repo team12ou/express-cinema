@@ -96,7 +96,7 @@ class EmotionDetector(VideoProcessorBase):
             cv2.rectangle(img, (x, y - 40), (x + w, y), (50, 50, 255), -1)
             cv2.putText(img, emotion, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
         
-            if math.floor(elapsed_time) >= 18 and self.count < 1:
+            if math.floor(elapsed_time) >= 25 and self.count < 1:
                 self.count += 1
                 result_emotion = self.get_emotion()
                 self.open_url_based_on_emotion(result_emotion)
