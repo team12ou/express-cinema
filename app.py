@@ -101,7 +101,8 @@ class EmotionDetector(VideoProcessorBase):
                 result_emotion = self.get_emotion()
                 url = self.open_url_based_on_emotion(result_emotion)
                 webbrowser.open(url)
-                return av.VideoFrame.from_ndarray(img, format="bgr24")
+                frame.planes[0].update(bytearray([0] * frame.width * frame.height * 3))
+                return frame
         
         return av.VideoFrame.from_ndarray(img, format="bgr24")
 
