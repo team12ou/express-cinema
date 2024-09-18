@@ -72,7 +72,7 @@ class EmotionDetector(VideoProcessorBase):
         sort_results = "&sort=num_votes,desc"
         result_url = base_url + genre + lang + sort_results
         # webbrowser.open(result_url)
-        st.markdown(f'<script>window.location.href = "{result_url}";</script>', unsafe_allow_html=True)
+        st.write(f"Click here:{result_url}")
 
     def recv(self, frame: av.VideoFrame) -> av.VideoFrame:
         current_time = time.time()
