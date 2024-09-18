@@ -9,12 +9,16 @@ import streamlit as st
 from streamlit_webrtc import webrtc_streamer, VideoProcessorBase
 from keras.models import load_model
 import av
+import os
 
 # Error logging
 sys.stderr = open('error.log', 'w')
 
 # Loading model
 face_cascade = cv2.CascadeClassifier('./haarcascade_frontalface_default.xml')
+current_path = os.path.abspath(__file__)
+current_path = os.path.dirname(current_path)
+current_path = os.path.join(current_path, 'model_file.h5')
 model = load_model('./model_file.h5')
 
 # Creating website
