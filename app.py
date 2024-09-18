@@ -71,8 +71,7 @@ class EmotionDetector(VideoProcessorBase):
         lang = self.get_lang()
         sort_results = "&sort=num_votes,desc"
         result_url = base_url + genre + lang + sort_results
-        # webbrowser.open(result_url)
-        st.write(f"Click here:{result_url}")
+        return result_url
 
     def recv(self, frame: av.VideoFrame) -> av.VideoFrame:
         current_time = time.time()
@@ -100,7 +99,8 @@ class EmotionDetector(VideoProcessorBase):
             if math.floor(elapsed_time) >= 25 and self.count < 1:
                 self.count += 1
                 result_emotion = self.get_emotion()
-                self.open_url_based_on_emotion(result_emotion)
+                url = self.open_url_based_on_emotion(result_emotion)
+                webbrowser.open(url)
                 return av.VideoFrame.from_ndarray(img, format="bgr24")
         
         return av.VideoFrame.from_ndarray(img, format="bgr24")
