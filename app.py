@@ -112,7 +112,7 @@ webrtc_ctx = webrtc_streamer(
     rtc_configuration={
         "iceServers": [
             {"urls": ["stun:stun.l.google.com:19302"]},
-            {"urls": "turn:turn.anyfirewall.com:443?transport=tcp", "credential": "password", "username": "user"},
+            {"urls": "turn:turn.anyfirewall.com:443?transport=tcp", "credential": "webrtc", "username": "webrtc"},
         ]
     }
 )
