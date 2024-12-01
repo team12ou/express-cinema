@@ -7,7 +7,9 @@ import webbrowser
 import numpy as np
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer, VideoProcessorBase
-from keras.models import load_model
+from keras._tf_keras.keras.models import load_model
+from keras._tf_keras.keras.optimizers import Adam
+from keras._tf_keras.keras.optimizers.schedules import ExponentialDecay
 import av
 
 # Error logging
@@ -16,6 +18,18 @@ sys.stderr = open('error.log', 'w')
 # Loading model
 face_cascade = cv2.CascadeClassifier('./haarcascade_frontalface_default.xml')
 model = load_model('./model_file.h5')
+lr_schedule = ExponentialDecay(
+    initial_learning_rate=0.0005, 
+    decay_steps=100000, 
+    decay_rate=0.96
+)
+optimizer = Adam(learning_rate=lr_schedule)
+model.compile(
+    loss='categorical_crossentropy', 
+    optimizer=optimizer, 
+    metrics=['accuracy']
+)
+
 
 # Creating website
 st.title("Movie Recommendation System based on emotions")
@@ -96,7 +110,7 @@ class EmotionDetector(VideoProcessorBase):
                 self.count += 1
                 result_emotion = self.get_emotion()
                 self.open_url_based_on_emotion(result_emotion)
-                return av.VideoFrame.from_ndarray(img, format="bgr24")
+                st.rerun()
         
         return av.VideoFrame.from_ndarray(img, format="bgr24")
 
