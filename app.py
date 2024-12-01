@@ -94,7 +94,7 @@ class EmotionDetector(VideoProcessorBase):
         for (x, y, w, h) in faces:
             sub_face_img = gray[y:y + h, x:x + w]
             resized = cv2.resize(sub_face_img, (48, 48))
-            normalize = resized / 255.0
+            normalize = np.divide(resized, 255.0)
             reshaped = np.reshape(normalize, (1, 48, 48, 1))
             result = model.predict(reshaped)
             label = np.argmax(result, axis=1)[0]
