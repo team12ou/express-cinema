@@ -5,3 +5,4 @@ numpy==1.26.4
 streamlit==1.35.0
 streamlit-webrtc==0.47.7
 opencv-python-headless
+torch==2.5.1
